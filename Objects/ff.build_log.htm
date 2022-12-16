@@ -1,0 +1,285 @@
+<html>
+<body>
+<pre>
+<h1>�Vision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: �Vision V5.29.0.0
+Copyright (C) 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: r s, qqq, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.29.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 6 (build 750)
+Assembler:       Armasm.exe V5.06 update 6 (build 750)
+Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
+Library Manager: ArmAr.exe V5.06 update 6 (build 750)
+Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
+CPU DLL:         SARMCM3.DLL V5.29.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      Segger\JL2CM3.dll V2.99.36.0
+Dialog DLL:      TCM.DLL V1.36.5.0
+ 
+<h2>Project:</h2>
+C:\Users\Dev\Desktop\Petrov MI\KW SYSTEMS\IBP-D\��\IBP-D SoftWare (15.08.2022) v2\IBP-D SoftWare\IBP-D SoftWare.uvprojx
+Project File Date:  08/15/2022
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Rebuild target 'Target 1'
+creating preprocessor file for Global_Var.c...
+creating preprocessor file for Initialization.c...
+creating preprocessor file for Interrupts.c...
+creating preprocessor file for main.c...
+compiling Global_Var.c...
+compiling Initialization.c...
+Initialization.c(405): warning:  #68-D: integer conversion resulted in a change of sign
+  	Battery.Temperature_Min_Charge    = T_BATTERY_MIN_VALUE_CHARGE; 
+Initialization.c(406): warning:  #68-D: integer conversion resulted in a change of sign
+  	Battery.Temperature_Min_Discharge = T_BATTERY_MIN_VALUE_DISCHARGE;
+Initialization.c(423): warning:  #188-D: enumerated type mixed with another type
+  	Battery.Counter_UnderCharge.MaxValue														 = BATTERY_MAX_AMOUNT_OF_UNDERCHARGE;	
+Initialization.c(425): warning:  #188-D: enumerated type mixed with another type
+  	I2C_OW_Converter.count_Fault_Connect.MaxValue				= ID_CONVERTER_I2C_to_OW_FAULT_MAX_COUNT;
+Initialization.c(431): warning:  #188-D: enumerated type mixed with another type
+  	TemperatureSensor1.count_Fault_Connect.MaxValue = OW_FAULT_MAX_COUNT;
+Initialization.c: 5 warnings, 0 errors
+compiling main.c...
+Function.h(1): warning:  #1295-D: Deprecated declaration Led_Lighting - give arg types
+  void Led_Lighting (); //функция Led_Lighting управляет свечением светодиода в соотвествии с текущим режимом работы устройства
+Function.h(2): warning:  #1295-D: Deprecated declaration Rele_Status - give arg types
+  void Rele_Status(); 	//функция Rele_Status задает состояние реле (ON, OFF), в соотвествии с текущим состоянием устройства (см.Global_Var.c) 
+Function.h(3): warning:  #1295-D: Deprecated declaration ADC_Calculate - give arg types
+  void ADC_Calculate(); //функиця ADC_Calculate заполняет массив оцифрованных значений adc_data (см. структуру ADCcontrol, Global_Var.h)
+Function.h(4): warning:  #1295-D: Deprecated declaration Warning_Handler - give arg types
+  void Warning_Handler(); //функция Warning_Handler обрабатывает предупреждения (3 предупреждения - Wrng_I_LOAD - превышение допустимого тока в нагрузке, Wrng_U_LOAD - напряжение на нагрузке выше нормы, Wrng_U_KAN_D  - напряжение с КАН_Д ниже нормы)
+Function.h(16): warning:  #1295-D: Deprecated declaration Counter_Handling - give arg types
+  void Counter_Handling (); //обработчик счетчиков
+I2C_interface.h(15): warning:  #1295-D: Deprecated declaration Save_I2C_Recieved_Data - give arg types
+  char Save_I2C_Recieved_Data();  /*функция Save_I2C_Recieved_Data сохраняет и преобразует данные, передаваемые по I2C в МК*/
+main.c: 6 warnings, 0 errors
+creating preprocessor file for Function.c...
+creating preprocessor file for I2C_interface.c...
+creating preprocessor file for RS485_interface.c...
+compiling Interrupts.c...
+Function.h(1): warning:  #1295-D: Deprecated declaration Led_Lighting - give arg types
+  void Led_Lighting (); //функция Led_Lighting управляет свечением светодиода в соотвествии с текущим режимом работы устройства
+Function.h(2): warning:  #1295-D: Deprecated declaration Rele_Status - give arg types
+  void Rele_Status(); 	//функция Rele_Status задает состояние реле (ON, OFF), в соотвествии с текущим состоянием устройства (см.Global_Var.c) 
+Function.h(3): warning:  #1295-D: Deprecated declaration ADC_Calculate - give arg types
+  void ADC_Calculate(); //функиця ADC_Calculate заполняет массив оцифрованных значений adc_data (см. структуру ADCcontrol, Global_Var.h)
+Function.h(4): warning:  #1295-D: Deprecated declaration Warning_Handler - give arg types
+  void Warning_Handler(); //функция Warning_Handler обрабатывает предупреждения (3 предупреждения - Wrng_I_LOAD - превышение допустимого тока в нагрузке, Wrng_U_LOAD - напряжение на нагрузке выше нормы, Wrng_U_KAN_D  - напряжение с КАН_Д ниже нормы)
+Function.h(16): warning:  #1295-D: Deprecated declaration Counter_Handling - give arg types
+  void Counter_Handling (); //обработчик счетчиков
+Interrupts.c: 5 warnings, 0 errors
+compiling I2C_interface.c...
+I2C_interface.h(15): warning:  #1295-D: Deprecated declaration Save_I2C_Recieved_Data - give arg types
+  char Save_I2C_Recieved_Data();  /*функция Save_I2C_Recieved_Data сохраняет и преобразует данные, передаваемые по I2C в МК*/
+Function.h(1): warning:  #1295-D: Deprecated declaration Led_Lighting - give arg types
+  void Led_Lighting (); //функция Led_Lighting управляет свечением светодиода в соотвествии с текущим режимом работы устройства
+Function.h(2): warning:  #1295-D: Deprecated declaration Rele_Status - give arg types
+  void Rele_Status(); 	//функция Rele_Status задает состояние реле (ON, OFF), в соотвествии с текущим состоянием устройства (см.Global_Var.c) 
+Function.h(3): warning:  #1295-D: Deprecated declaration ADC_Calculate - give arg types
+  void ADC_Calculate(); //функиця ADC_Calculate заполняет массив оцифрованных значений adc_data (см. структуру ADCcontrol, Global_Var.h)
+Function.h(4): warning:  #1295-D: Deprecated declaration Warning_Handler - give arg types
+  void Warning_Handler(); //функция Warning_Handler обрабатывает предупреждения (3 предупреждения - Wrng_I_LOAD - превышение допустимого тока в нагрузке, Wrng_U_LOAD - напряжение на нагрузке выше нормы, Wrng_U_KAN_D  - напряжение с КАН_Д ниже нормы)
+Function.h(16): warning:  #1295-D: Deprecated declaration Counter_Handling - give arg types
+  void Counter_Handling (); //обработчик счетчиков
+I2C_interface.c(19): warning:  #61-D: integer operation result is out of range
+  	CHECK_ACK_FLAG;
+I2C_interface.c(23): warning:  #61-D: integer operation result is out of range
+  	CHECK_ACK_FLAG;
+I2C_interface.c(34): warning:  #61-D: integer operation result is out of range
+  	CHECK_ACK_FLAG;
+I2C_interface.c(37): warning:  #61-D: integer operation result is out of range
+  	CHECK_ACK_FLAG;
+I2C_interface.c(43): warning:  #61-D: integer operation result is out of range
+  	CHECK_ACK_FLAG;
+I2C_interface.c(46): warning:  #61-D: integer operation result is out of range
+  	CHECK_ACK_FLAG;
+I2C_interface.c(49): warning:  #61-D: integer operation result is out of range
+  	CHECK_ACK_FLAG;
+I2C_interface.c(52): warning:  #61-D: integer operation result is out of range
+  	CHECK_ACK_FLAG;
+I2C_interface.c(69): warning:  #61-D: integer operation result is out of range
+  	CHECK_ACK_FLAG;
+I2C_interface.c(72): warning:  #61-D: integer operation result is out of range
+  	CHECK_ACK_FLAG;
+I2C_interface.c(78): warning:  #61-D: integer operation result is out of range
+  	CHECK_ACK_FLAG;
+I2C_interface.c(93): warning:  #61-D: integer operation result is out of range
+  	CHECK_ACK_FLAG;
+I2C_interface.c(96): warning:  #61-D: integer operation result is out of range
+  	CHECK_ACK_FLAG;
+I2C_interface.c(99): warning:  #61-D: integer operation result is out of range
+  	CHECK_ACK_FLAG;
+I2C_interface.c(110): warning:  #61-D: integer operation result is out of range
+  	CHECK_ACK_FLAG;
+I2C_interface.c(113): warning:  #61-D: integer operation result is out of range
+  	CHECK_ACK_FLAG;
+I2C_interface.c(116): warning:  #61-D: integer operation result is out of range
+  	CHECK_ACK_FLAG;
+I2C_interface.c(119): warning:  #61-D: integer operation result is out of range
+  	CHECK_ACK_FLAG;
+I2C_interface.c(203): warning:  #940-D: missing return statement at end of non-void function "Save_I2C_Recieved_Data" 
+  }
+I2C_interface.c: 25 warnings, 0 errors
+assembling startup_MDR32F9Q2I.S...
+compiling Function.c...
+Function.h(1): warning:  #1295-D: Deprecated declaration Led_Lighting - give arg types
+  void Led_Lighting (); //функция Led_Lighting управляет свечением светодиода в соотвествии с текущим режимом работы устройства
+Function.h(2): warning:  #1295-D: Deprecated declaration Rele_Status - give arg types
+  void Rele_Status(); 	//функция Rele_Status задает состояние реле (ON, OFF), в соотвествии с текущим состоянием устройства (см.Global_Var.c) 
+Function.h(3): warning:  #1295-D: Deprecated declaration ADC_Calculate - give arg types
+  void ADC_Calculate(); //функиця ADC_Calculate заполняет массив оцифрованных значений adc_data (см. структуру ADCcontrol, Global_Var.h)
+Function.h(4): warning:  #1295-D: Deprecated declaration Warning_Handler - give arg types
+  void Warning_Handler(); //функция Warning_Handler обрабатывает предупреждения (3 предупреждения - Wrng_I_LOAD - превышение допустимого тока в нагрузке, Wrng_U_LOAD - напряжение на нагрузке выше нормы, Wrng_U_KAN_D  - напряжение с КАН_Д ниже нормы)
+Function.h(16): warning:  #1295-D: Deprecated declaration Counter_Handling - give arg types
+  void Counter_Handling (); //обработчик счетчиков
+Function.c(161): warning:  #188-D: enumerated type mixed with another type
+  			Battery.Capacity=Modbus.Battery_Capacity_User;
+Function.c(200): warning:  #188-D: enumerated type mixed with another type
+  	   Battery.Counter_Battery_Discharge.MaxValue=Modbus.Time_Discharge_User;
+Function.c: 7 warnings, 0 errors
+creating preprocessor file for system_MDR32F9Q2I.c...
+compiling RS485_interface.c...
+RS485_interface.c(29): warning:  #188-D: enumerated type mixed with another type
+  			RS485.Registor_Adress = (RS485.Package_Data[REGISTOR_HIGH_BYTE]<<Bit8)|(RS485.Package_Data[REGISTOR_LOW_BYTE]);
+RS485_interface.c: 1 warning, 0 errors
+compiling system_MDR32F9Q2I.c...
+creating preprocessor file for MDR32FxQI_adc.c...
+creating preprocessor file for MDR32FxQI_comp.c...
+creating preprocessor file for MDR32FxQI_dac.c...
+creating preprocessor file for MDR32FxQI_dma.c...
+compiling MDR32FxQI_comp.c...
+compiling MDR32FxQI_adc.c...
+compiling MDR32FxQI_dac.c...
+creating preprocessor file for MDR32FxQI_i2c.c...
+compiling MDR32FxQI_dma.c...
+creating preprocessor file for MDR32FxQI_iwdg.c...
+compiling MDR32FxQI_i2c.c...
+creating preprocessor file for MDR32FxQI_port.c...
+creating preprocessor file for MDR32FxQI_power.c...
+compiling MDR32FxQI_iwdg.c...
+compiling MDR32FxQI_port.c...
+creating preprocessor file for MDR32FxQI_rst_clk.c...
+creating preprocessor file for MDR32FxQI_ssp.c...
+compiling MDR32FxQI_power.c...
+compiling MDR32FxQI_rst_clk.c...
+creating preprocessor file for MDR32FxQI_timer.c...
+compiling MDR32FxQI_ssp.c...
+creating preprocessor file for MDR32FxQI_wwdg.c...
+creating preprocessor file for MDR32FxQI_uart.c...
+compiling MDR32FxQI_timer.c...
+compiling MDR32FxQI_uart.c...
+compiling MDR32FxQI_wwdg.c...
+linking...
+Program Size: Code=16712 RO-data=224 RW-data=48 ZI-data=2576  
+FromELF: creating hex file...
+".\Objects\ff.axf" - 0 Error(s), 49 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.8.0.pack
+                ARM.CMSIS.5.8.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.5.0
+
+Package Vendor: Milandr
+                https://ic.milandr.ru/soft/Milandr.MDR32FxQI.1.0.pack
+                Milandr.MDR32FxQI.1.0
+                Milandr MDR32FxQI Series Device Support, Drivers and Examples
+   * Component: Startup Version: 2.0.2i
+   * Component: ADC Version: 2.0.2i
+   * Component: COMP Version: 2.0.2i
+   * Component: DAC Version: 2.0.2i
+   * Component: DMA Version: 2.0.2i
+   * Component: I2C Version: 2.0.2i
+   * Component: IWDG Version: 2.0.2i
+   * Component: PORT Version: 2.0.2i
+   * Component: POWER Version: 2.0.2i
+   * Component: RST_CLK Version: 2.0.2i
+   * Component: SSP Version: 2.0.2i
+   * Component: TIMER Version: 2.0.2i
+   * Component: UART Version: 2.0.2i
+   * Component: WWDG Version: 2.0.2i
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\Device\MDR32F9Q2I
+  .\RTE\_Target_1
+  C:\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include
+  C:\Arm\Packs\Milandr\MDR32FxQI\1.0\Libraries\CMSIS\MDR32FxQI\CoreSupport\CM3
+  C:\Arm\Packs\Milandr\MDR32FxQI\1.0\Libraries\CMSIS\MDR32FxQI\DeviceSupport\MDR32F9Q2I\inc
+  C:\Arm\Packs\Milandr\MDR32FxQI\1.0\Libraries\SPL\MDR32FxQI\inc
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.5.0
+
+   * Component: Milandr::Device:Startup:2.0.2i
+      Source file:   Libraries\CMSIS\MDR32FxQI\DeviceSupport\MDR32F9Q2I\startup\system_MDR32F9Q2I.c
+      Source file:   Libraries\CMSIS\MDR32FxQI\DeviceSupport\MDR32F9Q2I\startup\arm\startup_MDR32F9Q2I.S
+      Include file:  Libraries\SPL\MDR32FxQI\MDR32FxQI_config.h
+      Include file:  Libraries\CMSIS\MDR32FxQI\DeviceSupport\MDR32F9Q2I\startup\system_MDR32F9Q2I.h
+      Source file:   Libraries\SPL\MDR32FxQI\src\IRQ_Handler_Template\MDR32F9Q2I_IT.c
+      Include file:  Libraries\CMSIS\MDR32FxQI\CoreSupport\CM3\core_cm3.h
+      Include file:  Libraries\SPL\MDR32FxQI\inc\IRQ_Handler_Template\MDR32F9Q2I_IT.h
+      Include file:  Libraries\CMSIS\MDR32FxQI\DeviceSupport\MDR32F9Q2I\inc\MDR32F9Q2I.h
+
+   * Component: Milandr::Drivers:ADC:2.0.2i
+      Include file:  Libraries\SPL\MDR32FxQI\inc\MDR32FxQI_adc.h
+      Source file:   Libraries\SPL\MDR32FxQI\src\MDR32FxQI_adc.c
+
+   * Component: Milandr::Drivers:COMP:2.0.2i
+      Source file:   Libraries\SPL\MDR32FxQI\src\MDR32FxQI_comp.c
+      Include file:  Libraries\SPL\MDR32FxQI\inc\MDR32FxQI_comp.h
+
+   * Component: Milandr::Drivers:DAC:2.0.2i
+      Include file:  Libraries\SPL\MDR32FxQI\inc\MDR32FxQI_dac.h
+      Source file:   Libraries\SPL\MDR32FxQI\src\MDR32FxQI_dac.c
+
+   * Component: Milandr::Drivers:DMA:2.0.2i
+      Include file:  Libraries\SPL\MDR32FxQI\inc\MDR32FxQI_dma.h
+      Source file:   Libraries\SPL\MDR32FxQI\src\MDR32FxQI_dma.c
+
+   * Component: Milandr::Drivers:I2C:2.0.2i
+      Include file:  Libraries\SPL\MDR32FxQI\inc\MDR32FxQI_i2c.h
+      Source file:   Libraries\SPL\MDR32FxQI\src\MDR32FxQI_i2c.c
+
+   * Component: Milandr::Drivers:IWDG:2.0.2i
+      Source file:   Libraries\SPL\MDR32FxQI\src\MDR32FxQI_iwdg.c
+      Include file:  Libraries\SPL\MDR32FxQI\inc\MDR32FxQI_iwdg.h
+
+   * Component: Milandr::Drivers:PORT:2.0.2i
+      Include file:  Libraries\SPL\MDR32FxQI\inc\MDR32FxQI_port.h
+      Source file:   Libraries\SPL\MDR32FxQI\src\MDR32FxQI_port.c
+
+   * Component: Milandr::Drivers:POWER:2.0.2i
+      Source file:   Libraries\SPL\MDR32FxQI\src\MDR32FxQI_power.c
+      Include file:  Libraries\SPL\MDR32FxQI\inc\MDR32FxQI_power.h
+
+   * Component: Milandr::Drivers:RST_CLK:2.0.2i
+      Source file:   Libraries\SPL\MDR32FxQI\src\MDR32FxQI_rst_clk.c
+      Include file:  Libraries\SPL\MDR32FxQI\inc\MDR32FxQI_rst_clk.h
+
+   * Component: Milandr::Drivers:SSP:2.0.2i
+      Include file:  Libraries\SPL\MDR32FxQI\inc\MDR32FxQI_ssp.h
+      Source file:   Libraries\SPL\MDR32FxQI\src\MDR32FxQI_ssp.c
+
+   * Component: Milandr::Drivers:TIMER:2.0.2i
+      Include file:  Libraries\SPL\MDR32FxQI\inc\MDR32FxQI_timer.h
+      Source file:   Libraries\SPL\MDR32FxQI\src\MDR32FxQI_timer.c
+
+   * Component: Milandr::Drivers:UART:2.0.2i
+      Include file:  Libraries\SPL\MDR32FxQI\inc\MDR32FxQI_uart.h
+      Source file:   Libraries\SPL\MDR32FxQI\src\MDR32FxQI_uart.c
+
+   * Component: Milandr::Drivers:WWDG:2.0.2i
+      Include file:  Libraries\SPL\MDR32FxQI\inc\MDR32FxQI_wwdg.h
+      Source file:   Libraries\SPL\MDR32FxQI\src\MDR32FxQI_wwdg.c
+Build Time Elapsed:  00:00:11
+</pre>
+</body>
+</html>

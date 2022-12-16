@@ -1,0 +1,22 @@
+--cpu Cortex-M3
+".\objects\main.o"
+".\objects\initialization.o"
+".\objects\startup_mdr32f9q2i.o"
+".\objects\system_mdr32f9q2i.o"
+".\objects\mdr32fxqi_adc.o"
+".\objects\mdr32fxqi_comp.o"
+".\objects\mdr32fxqi_dac.o"
+".\objects\mdr32fxqi_dma.o"
+".\objects\mdr32fxqi_i2c.o"
+".\objects\mdr32fxqi_iwdg.o"
+".\objects\mdr32fxqi_port.o"
+".\objects\mdr32fxqi_power.o"
+".\objects\mdr32fxqi_rst_clk.o"
+".\objects\mdr32fxqi_ssp.o"
+".\objects\mdr32fxqi_timer.o"
+".\objects\mdr32fxqi_uart.o"
+".\objects\mdr32fxqi_wwdg.o"
+--library_type=microlib --strict --scatter ".\Objects\ff.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\ff.map" -o .\Objects\ff.axf
