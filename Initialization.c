@@ -8,6 +8,7 @@
 #include "MDR32FxQI_eeprom.h"
 #include "MDR32FxQI_iwdg.h"
 #include "Initialization.h"
+#include "Configuration.h"
 #include "Defines.h" 
 #include "Global_Var.h"
 #include "Function.h"
@@ -488,6 +489,20 @@ void struct_config(void)
 	ADC4_U_KAN_D.Channel		=	ADC_U_KAN_D_ch;
 	ADC5_U_ZERO.Channel			=	ADC_U_ZERO_ch;
 	ADC7_KAN_D_TYPE.Channel	=	ADC_KAN_D_TYPE;
+	
+	
+	/////////////////////////////////////////////
+		//Начальное состояние ИБП-Д
+	BATTERY_JOIN_TO_LOAD(OFF);
+	BOOST_REGELATOR(OFF);
+	BOOST_REGELATOR_CAPACITY_DISCHARGE(OFF);
+	RELE1_AC.ReleStatus	= NOT_NORM;
+	RELE2_BATTERY.ReleStatus	= NOT_NORM;
+	RELE3_STABLE_WORK.ReleStatus = NOT_NORM;
+	RELE_STATUS;
+	/////////////////////////////////////////////
+	
+	
 	
 	ADC0_I_LOAD.Convert_coef			=	ADC_I_LOAD_koef;
 	ADC1_I_BATTERY.Convert_coef		=	ADC_I_BATTERY_koef;

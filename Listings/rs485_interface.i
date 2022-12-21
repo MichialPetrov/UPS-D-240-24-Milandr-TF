@@ -8624,12 +8624,15 @@ void RS485_Create_Transmitted_Package (void)
 								{
 									short data	= 0;
 									Battery.CapacityPins=(PORT_ReadInputData(((MDR_PORT_TypeDef *) (0x400A8000)))&((1<<Bit7)|(1<<Bit6)|(1<<Bit5)|(1<<Bit4)));;
+									Battery.CapacityPins >>= Bit4;
 									Battery.TimeDischargePins=(PORT_ReadInputData(((MDR_PORT_TypeDef *) (0x400A8000)))&((1<<Bit3)|(1<<Bit2)|(1<<Bit1)|(1<<Bit0)));;
+	
 									data = (((~Battery.CapacityPins)			&0xF) <<Bit0) |
-												 ((((~Battery.TimeDischargePins)&0xF) <<Bit4))	; 	
-									if(UPS_D.Type_Of_KAN_D == POWER240W)  			data |= 0x03;
-									else if(UPS_D.Type_Of_KAN_D == POWER120W)		data |= 0x02;
-									else if(UPS_D.Type_Of_KAN_D == POWER75W)		data |= 0x01;
+												 ((((~Battery.TimeDischargePins)&0xF) <<Bit4))	; 
+									Type_Of_KAN_D();									
+									if(UPS_D.Type_Of_KAN_D == POWER240W)  			data |= 0x03<<Bit8;
+									else if(UPS_D.Type_Of_KAN_D == POWER120W)		data |= 0x02<<Bit8;
+									else if(UPS_D.Type_Of_KAN_D == POWER75W)		data |= 0x01<<Bit8;
 									
 									Create_2Byte_Answer(data);	
 								}

@@ -16,19 +16,14 @@ void Timer1_IRQHandler(void)
 	/* Сброс флага прерывания по переполнению таймера */
   TIMER_ClearITPendingBit(MDR_TIMER1, TIMER_STATUS_CNT_ARR);	
 	Counter_Handling (&Counter_Starting_Initialization);
-	//Counter_Handling (&Counter_Check_Battery_Connect);
-	//Counter_Handling (&Counter_Check_Battery_Connect_Voltage_Drop);
-	//Counter_Handling (&Battery.Counter_Battery_Discharge);
-	//Counter_Handling (&Battery.Equalizing_Charge.Counter_I_Battery_Write_Value);	
 	Counter_Handling (&Battery.Counter_Check_I_Battery);
 	Counter_Handling (&Counter_Anti_Bounce);
 	Counter_Handling (&Counter_Transient_Process);
 	Counter_Handling (&Counter_Transient_Process_UPS);
 	Counter_Handling (&I2C_OW_Converter.Counter_ACK_Flag);
 	Counter_Handling (&I2C_OW_Converter.Counter_I2C_Command_End);
-	//Counter_Handling (&Counter_Transient_Process_I_Battery_Impossible_Interrupt);
-	//Counter_Handling (&RS485.Counter_Delay_Between_Bytes);
-	//Counter_Handling (&RS485.Counter_Waiting_Receive_End);
+
+	Counter_Handling (&RS485.Counter_Waiting_Receive_End);
 	Led_Lighting(&LED1);
 	Led_Lighting(&LED2);
 	ADC_Calculate(&ADC5_U_ZERO);
@@ -38,13 +33,7 @@ void Timer1_IRQHandler(void)
 	ADC_Calculate(&ADC3_U_BATTERY);
 	ADC_Calculate(&ADC4_U_KAN_D);
 	ADC_Calculate(&ADC7_KAN_D_TYPE);
-	//Warning_Handler(&Wrng_U_KAN_D);
-	//Warning_Handler(&Wrng_U_LOAD);
-	//Warning_Handler(&Wrng_I_LOAD);
-	//START_CONDITION_IS_END;
-	//Check_UPS_Discharge_To_Charge();
-	//Check_UPS_Sleep_To_Charge();	
-	//Check_I_Battery_Discharge();
+
 
 	
 }
@@ -57,10 +46,16 @@ void Timer2_IRQHandler(void)
 	//START_CONDITION_IS_END;
 	Warning_Handler(&Wrng_U_KAN_D);
 	Warning_Handler(&Wrng_U_LOAD);
-	Warning_Handler(&Wrng_I_LOAD);
-	//Check_UPS_Charge_To_Discharge();
-	//Check_UPS_Alarm_To_Discharge();	
-	//Check_UPS_Discharge_To_Alarm();
+	
+	if(Battery.Counter_Check_I_Battery.Status == OFF) //если последние 5 секунд КЗ не обнаруживалось
+	{
+		Warning_Handler(&Wrng_I_LOAD);
+		if(Wrng_I_LOAD.WarningStatus == YES) //если авария КЗ зафиксирована, то запускаем таймер 5 секунд
+		{
+			Battery.Counter_Check_I_Battery.Status = ON;
+		}
+	}
+	
 }
 
 

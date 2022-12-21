@@ -7981,13 +7981,13 @@ void Save_Setting_to_Flash(void);
 #line 23 "main.c"
 
 
+uint8_t time, bat;
+
 int main (void)
 {
 
  	Initialization();
 	{while(ADC_avr_calculate_end!=0xBF);}; 
-	Default_settings();						
-	
 	
 
 	Counter_Starting_Initialization.Status = ON; 
@@ -8002,17 +8002,14 @@ int main (void)
 	LED1.Flash=PERMAMENT;
 	LED2.Color=GREEN;
 	LED2.Flash=PERMAMENT;
+	
+
 
 	while(1)
 	{
-		
-		
-		
-		
 		Testing_UPS_D();
 		Read_Temperature();
 		RS485_ReadData();
-		
 	}
 }
 

@@ -21,15 +21,15 @@ Target DLL:      Segger\JL2CM3.dll V2.99.42.0
 Dialog DLL:      TCM.DLL V1.56.1.0
  
 <h2>Project:</h2>
-C:\WORK\Petrov MI\KW SYSTEMS\IBP-D\��\������������� ��\UPS-D-240-24-Milandr (TF)\IBP-D SoftWare.uvprojx
+C:\WORK\Petrov MI\KW SYSTEMS\IBP-D\��\������������� ��\UPS-D-240-24-Milandr-TF\IBP-D SoftWare.uvprojx
 Project File Date:  12/01/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Programs\Keil v537\ARM\ARMCC\Bin'
 Rebuild target 'Target 1'
 creating preprocessor file for main.c...
-creating preprocessor file for Initialization.c...
 creating preprocessor file for Global_Var.c...
+creating preprocessor file for Initialization.c...
 creating preprocessor file for I2C_interface.c...
 creating preprocessor file for Interrupts.c...
 creating preprocessor file for Function.c...
@@ -40,6 +40,7 @@ Defines.h(331): warning:  #1-D: last line of file ends without a newline
 Defines.h(331): warning:  #1-D: last line of file ends without a newline
   	
 Global_Var.c: 2 warnings, 0 errors
+creating preprocessor file for Save_Flash.c...
 compiling main.c...
 Defines.h(331): warning:  #1-D: last line of file ends without a newline
   	
@@ -50,7 +51,6 @@ Function.h(1): warning:  #1295-D: Deprecated declaration Rele_Status - give arg 
 I2C_interface.h(15): warning:  #1295-D: Deprecated declaration Save_I2C_Recieved_Data - give arg types
   char Save_I2C_Recieved_Data();  /*функция Save_I2C_Recieved_Data сохраняет и преобразует данные, передаваемые по I2C в МК*/
 main.c: 4 warnings, 0 errors
-creating preprocessor file for Save_Flash.c...
 compiling Interrupts.c...
 Defines.h(331): warning:  #1-D: last line of file ends without a newline
   	
@@ -75,22 +75,38 @@ Defines.h(331): warning:  #1-D: last line of file ends without a newline
   	
 Function.h(1): warning:  #1295-D: Deprecated declaration Rele_Status - give arg types
   void Rele_Status(); 	//функция Rele_Status задает состояние реле (ON, OFF), в соотвествии с текущим состоянием устройства (см.Global_Var.c) 
-Initialization.c(133): warning:  #177-D: variable "ADC2_InitStructure"  was declared but never referenced
+Initialization.c(134): warning:  #177-D: variable "ADC2_InitStructure"  was declared but never referenced
   	ADCx_InitTypeDef ADC2_InitStructure; //Инициализацинная структура для АЦП1 
-Initialization.c(524): warning:  #188-D: enumerated type mixed with another type
+Initialization.c(539): warning:  #188-D: enumerated type mixed with another type
   	Battery.Counter_UnderCharge.MaxValue													    = 
 ATTERY_MAX_AMOUNT_OF_UNDERCHARGE;	
-Initialization.c(527): warning:  #188-D: enumerated type mixed with another type
+Initialization.c(542): warning:  #188-D: enumerated type mixed with another type
   	I2C_OW_Converter.count_Fault_Connect.MaxValue				= 
 D_CONVERTER_I2C_to_OW_FAULT_MAX_COUNT;
-Initialization.c(533): warning:  #188-D: enumerated type mixed with another type
+Initialization.c(548): warning:  #188-D: enumerated type mixed with another type
   	TemperatureSensor1.count_Fault_Connect.MaxValue = 
 W_FAULT_MAX_COUNT;
-Initialization.c(571): warning:  #188-D: enumerated type mixed with another type
+Initialization.c(586): warning:  #188-D: enumerated type mixed with another type
   	UPS_D.P_KAN_D = Type_Of_KAN_D(); //определяем значение Мощности КАН-Д UPS_D.I.Load.Max_Value и UPS_D.I.Battery.Max_Value_Discharge
-Initialization.c(655): warning:  #177-D: variable "Data"  was declared but never referenced
+Initialization.c(670): warning:  #177-D: variable "Data"  was declared but never referenced
   	uint32_t Data;
 Initialization.c: 9 warnings, 0 errors
+compiling Function.c...
+Defines.h(331): warning:  #1-D: last line of file ends without a newline
+  	
+Defines.h(331): warning:  #1-D: last line of file ends without a newline
+  	
+Function.h(1): warning:  #1295-D: Deprecated declaration Rele_Status - give arg types
+  void Rele_Status(); 	//функция Rele_Status задает состояние реле (ON, OFF), в соотвествии с текущим состоянием устройства (см.Global_Var.c) 
+Function.c(37): warning:  #188-D: enumerated type mixed with another type
+  		case BATTERY_CAPACITY_USER:			Battery.Capacity=UPS_D.Battery_Capacity_User;		break;
+Function.c(52): warning:  #188-D: enumerated type mixed with another type
+  		case DISCHARGE_TIME_USER: 			Battery.Counter_Battery_Discharge.MaxValue=UPS_D.Time_Discharge_User;	break;
+Function.c(364): warning:  #188-D: enumerated type mixed with another type
+  	UPS_D.P_KAN_D = Type_Of_KAN_D(); //определяем значения Мощность КАН-Д UPS_D.I.Load.Max_Value и UPS_D.I.Battery.Max_Value_Discharge
+Function.c(436): warning:  #223-D: function "Counter_Handling" declared implicitly
+  							Counter_Handling(&Battery.Equalizing_Charge.Counter_I_Battery_Is_Constant); //инкрементируем счетчик времени в течении которого ток зарада в режиме Уравнительный заряд находится в рамках DELTA_OF_I_BATTERY_EQUALIZING_CHARGE
+Function.c: 7 warnings, 0 errors
 compiling I2C_interface.c...
 Defines.h(331): warning:  #1-D: last line of file ends without a newline
   	
@@ -162,22 +178,6 @@ I2C_interface.c(205): warning:  #940-D: missing return statement at end of non-v
   }
 I2C_interface.c: 25 warnings, 0 errors
 assembling startup_MDR32F9Q2I.S...
-compiling Function.c...
-Defines.h(331): warning:  #1-D: last line of file ends without a newline
-  	
-Defines.h(331): warning:  #1-D: last line of file ends without a newline
-  	
-Function.h(1): warning:  #1295-D: Deprecated declaration Rele_Status - give arg types
-  void Rele_Status(); 	//функция Rele_Status задает состояние реле (ON, OFF), в соотвествии с текущим состоянием устройства (см.Global_Var.c) 
-Function.c(62): warning:  #188-D: enumerated type mixed with another type
-  		case BATTERY_CAPACITY_USER:			Battery.Capacity=UPS_D.Battery_Capacity_User;		break;
-Function.c(77): warning:  #188-D: enumerated type mixed with another type
-  		case DISCHARGE_TIME_USER: 			Battery.Counter_Battery_Discharge.MaxValue=UPS_D.Time_Discharge_User;	break;
-Function.c(389): warning:  #188-D: enumerated type mixed with another type
-  	UPS_D.P_KAN_D = Type_Of_KAN_D(); //определяем значения Мощность КАН-Д UPS_D.I.Load.Max_Value и UPS_D.I.Battery.Max_Value_Discharge
-Function.c(461): warning:  #223-D: function "Counter_Handling" declared implicitly
-  							Counter_Handling(&Battery.Equalizing_Charge.Counter_I_Battery_Is_Constant); //инкрементируем счетчик времени в течении которого ток зарада в режиме Уравнительный заряд находится в рамках DELTA_OF_I_BATTERY_EQUALIZING_CHARGE
-Function.c: 7 warnings, 0 errors
 compiling RS485_interface.c...
 Defines.h(331): warning:  #1-D: last line of file ends without a newline
   	
@@ -193,12 +193,14 @@ RS485_interface.c(82): warning:  #188-D: enumerated type mixed with another type
   				case SET_U_BATTERY_LIMIT_VALUE_REG:							Testing.Discharge_Mode 				 = (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	// 38						
 RS485_interface.c(83): warning:  #188-D: enumerated type mixed with another type
   				case STATUS_DISCHARGE_MODE:											Testing.U_Battery_Limit_Value  = (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	// 39									
-RS485_interface.c: 6 warnings, 0 errors
+RS485_interface.c(230): warning:  #223-D: function "Type_Of_KAN_D" declared implicitly
+  									Type_Of_KAN_D();									
+RS485_interface.c: 7 warnings, 0 errors
+creating preprocessor file for system_MDR32F9Q2I.c...
 compiling Save_Flash.c...
 Defines.h(331): warning:  #1-D: last line of file ends without a newline
   	
 Save_Flash.c: 1 warning, 0 errors
-creating preprocessor file for system_MDR32F9Q2I.c...
 compiling Function_Interrupts.c...
 Function_Interrupts.h(1): warning:  #1295-D: Deprecated declaration Led_Lighting - give arg types
   void Led_Lighting (); //функция Led_Lighting управляет свечением светодиода в соотвествии с текущим режимом работы устройства
@@ -219,35 +221,35 @@ compiling system_MDR32F9Q2I.c...
 creating preprocessor file for MDR32FxQI_adc.c...
 creating preprocessor file for MDR32FxQI_comp.c...
 compiling MDR32FxQI_adc.c...
+compiling MDR32FxQI_comp.c...
 creating preprocessor file for MDR32FxQI_dac.c...
 creating preprocessor file for MDR32FxQI_dma.c...
-compiling MDR32FxQI_comp.c...
 creating preprocessor file for MDR32FxQI_eeprom.c...
 compiling MDR32FxQI_dac.c...
 creating preprocessor file for MDR32FxQI_i2c.c...
-compiling MDR32FxQI_dma.c...
 creating preprocessor file for MDR32FxQI_iwdg.c...
+compiling MDR32FxQI_dma.c...
 creating preprocessor file for MDR32FxQI_port.c...
-compiling MDR32FxQI_eeprom.c...
 creating preprocessor file for MDR32FxQI_power.c...
 creating preprocessor file for MDR32FxQI_rst_clk.c...
 compiling MDR32FxQI_i2c.c...
+compiling MDR32FxQI_eeprom.c...
 creating preprocessor file for MDR32FxQI_ssp.c...
 compiling MDR32FxQI_iwdg.c...
 creating preprocessor file for MDR32FxQI_timer.c...
-compiling MDR32FxQI_port.c...
 compiling MDR32FxQI_power.c...
+compiling MDR32FxQI_port.c...
 creating preprocessor file for MDR32FxQI_uart.c...
-creating preprocessor file for MDR32FxQI_wwdg.c...
 compiling MDR32FxQI_rst_clk.c...
+creating preprocessor file for MDR32FxQI_wwdg.c...
 compiling MDR32FxQI_ssp.c...
-compiling MDR32FxQI_uart.c...
 compiling MDR32FxQI_timer.c...
+compiling MDR32FxQI_uart.c...
 compiling MDR32FxQI_wwdg.c...
 linking...
-Program Size: Code=11144 RO-data=240 RW-data=44 ZI-data=2740  
+Program Size: Code=11368 RO-data=240 RW-data=44 ZI-data=2740  
 FromELF: creating hex file...
-".\Objects\IBP-D firmware.axf" - 0 Error(s), 68 Warning(s).
+".\Objects\IBP-D firmware.axf" - 0 Error(s), 69 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -291,17 +293,17 @@ Package Vendor: Milandr
 
    * Component: Milandr::Device:Startup:2.0.2i
       Include file:  Libraries/CMSIS/MDR32FxQI/DeviceSupport/MDR32F9Q2I/startup/system_MDR32F9Q2I.h
-      Include file:  Libraries/CMSIS/MDR32FxQI/DeviceSupport/MDR32F9Q2I/inc/MDR32F9Q2I.h
       Source file:   Libraries/CMSIS/MDR32FxQI/DeviceSupport/MDR32F9Q2I/startup/system_MDR32F9Q2I.c
-      Include file:  Libraries/SPL/MDR32FxQI/inc/IRQ_Handler_Template/MDR32F9Q2I_IT.h
-      Source file:   Libraries/SPL/MDR32FxQI/src/IRQ_Handler_Template/MDR32F9Q2I_IT.c
-      Include file:  Libraries/CMSIS/MDR32FxQI/CoreSupport/CM3/core_cm3.h
-      Source file:   Libraries/CMSIS/MDR32FxQI/DeviceSupport/MDR32F9Q2I/startup/arm/startup_MDR32F9Q2I.S
+      Include file:  Libraries/CMSIS/MDR32FxQI/DeviceSupport/MDR32F9Q2I/inc/MDR32F9Q2I.h
       Include file:  Libraries/SPL/MDR32FxQI/MDR32FxQI_config.h
+      Source file:   Libraries/CMSIS/MDR32FxQI/DeviceSupport/MDR32F9Q2I/startup/arm/startup_MDR32F9Q2I.S
+      Include file:  Libraries/CMSIS/MDR32FxQI/CoreSupport/CM3/core_cm3.h
+      Source file:   Libraries/SPL/MDR32FxQI/src/IRQ_Handler_Template/MDR32F9Q2I_IT.c
+      Include file:  Libraries/SPL/MDR32FxQI/inc/IRQ_Handler_Template/MDR32F9Q2I_IT.h
 
    * Component: Milandr::Drivers:ADC:2.0.2i
-      Source file:   Libraries/SPL/MDR32FxQI/src/MDR32FxQI_adc.c
       Include file:  Libraries/SPL/MDR32FxQI/inc/MDR32FxQI_adc.h
+      Source file:   Libraries/SPL/MDR32FxQI/src/MDR32FxQI_adc.c
 
    * Component: Milandr::Drivers:COMP:2.0.2i
       Source file:   Libraries/SPL/MDR32FxQI/src/MDR32FxQI_comp.c
@@ -312,8 +314,8 @@ Package Vendor: Milandr
       Source file:   Libraries/SPL/MDR32FxQI/src/MDR32FxQI_dac.c
 
    * Component: Milandr::Drivers:DMA:2.0.2i
-      Include file:  Libraries/SPL/MDR32FxQI/inc/MDR32FxQI_dma.h
       Source file:   Libraries/SPL/MDR32FxQI/src/MDR32FxQI_dma.c
+      Include file:  Libraries/SPL/MDR32FxQI/inc/MDR32FxQI_dma.h
 
    * Component: Milandr::Drivers:EEPROM:2.0.2i
       Include file:  Libraries/SPL/MDR32FxQI/inc/MDR32FxQI_eeprom.h
@@ -324,20 +326,20 @@ Package Vendor: Milandr
       Include file:  Libraries/SPL/MDR32FxQI/inc/MDR32FxQI_i2c.h
 
    * Component: Milandr::Drivers:IWDG:2.0.2i
-      Source file:   Libraries/SPL/MDR32FxQI/src/MDR32FxQI_iwdg.c
       Include file:  Libraries/SPL/MDR32FxQI/inc/MDR32FxQI_iwdg.h
+      Source file:   Libraries/SPL/MDR32FxQI/src/MDR32FxQI_iwdg.c
 
    * Component: Milandr::Drivers:PORT:2.0.2i
       Include file:  Libraries/SPL/MDR32FxQI/inc/MDR32FxQI_port.h
       Source file:   Libraries/SPL/MDR32FxQI/src/MDR32FxQI_port.c
 
    * Component: Milandr::Drivers:POWER:2.0.2i
-      Source file:   Libraries/SPL/MDR32FxQI/src/MDR32FxQI_power.c
       Include file:  Libraries/SPL/MDR32FxQI/inc/MDR32FxQI_power.h
+      Source file:   Libraries/SPL/MDR32FxQI/src/MDR32FxQI_power.c
 
    * Component: Milandr::Drivers:RST_CLK:2.0.2i
-      Include file:  Libraries/SPL/MDR32FxQI/inc/MDR32FxQI_rst_clk.h
       Source file:   Libraries/SPL/MDR32FxQI/src/MDR32FxQI_rst_clk.c
+      Include file:  Libraries/SPL/MDR32FxQI/inc/MDR32FxQI_rst_clk.h
 
    * Component: Milandr::Drivers:SSP:2.0.2i
       Include file:  Libraries/SPL/MDR32FxQI/inc/MDR32FxQI_ssp.h
@@ -352,8 +354,8 @@ Package Vendor: Milandr
       Include file:  Libraries/SPL/MDR32FxQI/inc/MDR32FxQI_uart.h
 
    * Component: Milandr::Drivers:WWDG:2.0.2i
-      Source file:   Libraries/SPL/MDR32FxQI/src/MDR32FxQI_wwdg.c
       Include file:  Libraries/SPL/MDR32FxQI/inc/MDR32FxQI_wwdg.h
+      Source file:   Libraries/SPL/MDR32FxQI/src/MDR32FxQI_wwdg.c
 Build Time Elapsed:  00:00:02
 </pre>
 </body>

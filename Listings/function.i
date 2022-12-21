@@ -8845,31 +8845,6 @@ extern __declspec(__nothrow) int __C_library_version_number(void);
 void Rele_Status(ReleControl *RELE)
 {
 	
-	switch (RELE->pin)
-	{
-		case PORT_Pin_3:
-			if			(MODE==CHARGE) 		RELE ->ReleStatus=NORM;
-	  	else if (MODE==DISCHARGE) RELE ->ReleStatus=NOT_NORM;
-	  	else if (MODE==WAIT) 			RELE ->ReleStatus=(Wrng_U_KAN_D.WarningStatus==NO)?(NORM):(NOT_NORM); 
-		  else if (MODE==SLEEP) 		RELE ->ReleStatus=NOT_NORM;
-			else if (MODE==ALARM) 		RELE ->ReleStatus=(Wrng_U_KAN_D.WarningStatus==NO)?(NORM):(NOT_NORM); 
-			break;
-		case PORT_Pin_2:
-		  if			(MODE==CHARGE) 		RELE ->ReleStatus=(Battery.Level>85)?(NORM):(NOT_NORM);
-			else if (MODE==DISCHARGE) RELE ->ReleStatus=(Battery.Level>20)?(NORM):(NOT_NORM);
-		  else if (MODE==WAIT) 			RELE ->ReleStatus=NOT_NORM;
-			else if (MODE==SLEEP) 		RELE ->ReleStatus=((Battery.Level>20)&&(device_status[CHECK_BATTERY_STATUS]!=YES))?(NORM):(NOT_NORM);
-			else if (MODE==ALARM)			RELE ->ReleStatus=((Battery.Level>20)&&(device_status[CHECK_BATTERY_STATUS]!=YES))?(NORM):(NOT_NORM);
-			break;
-		case PORT_Pin_1:
-			if			(MODE==CHARGE)		RELE ->ReleStatus=NORM;
-			else if (MODE==DISCHARGE) RELE ->ReleStatus=NORM;
-		  else if (MODE==WAIT) 			RELE ->ReleStatus=NOT_NORM;
-			else if (MODE==SLEEP) 		RELE ->ReleStatus=NOT_NORM;
-			else if (MODE==ALARM) 		RELE ->ReleStatus=NOT_NORM;
-			break;
-	}
-	
 	(RELE ->ReleStatus==NORM)?(PORT_SetBits(((MDR_PORT_TypeDef *) (0x400C8000)), RELE ->pin)):(PORT_ResetBits(((MDR_PORT_TypeDef *) (0x400C8000)), RELE ->pin));
 
 }
@@ -9668,7 +9643,45 @@ float U_Hysteresis_KAN_D (void)
  
 void Testing_UPS_D(void)
 {
-	
+	char rem=PORT_ReadInputDataBit(((MDR_PORT_TypeDef *) (0x400C0000)), PORT_Pin_6);;
+	if((Testing.Charge_Mode == ON)||(rem==ON))
+	{
+		{if(ON==ON){PORT_SetBits(((MDR_PORT_TypeDef *) (0x400C8000)), PORT_Pin_6);} else {PORT_ResetBits(((MDR_PORT_TypeDef *) (0x400C8000)), PORT_Pin_6);}};
+		if(Testing.U_Battery_Limit_Value == OFF)
+		{
+			DAC2_SetData(4095);	
+		}
+		else if((Testing.U_Battery_Limit_Value == YES)||(rem==ON))
+		{
+			DAC2_SetData(0);		
+		}
+		RELE1_AC.ReleStatus	= NORM;
+		RELE2_BATTERY.ReleStatus	= NORM;
+		RELE3_STABLE_WORK.ReleStatus = NORM;
+		{Rele_Status(&RELE1_AC); Rele_Status(&RELE2_BATTERY); Rele_Status(&RELE3_STABLE_WORK);};
+		LED1.Color=RED;
+		LED2.Color=RED;
+	}
+	else
+	{
+		{if(OFF==ON){PORT_SetBits(((MDR_PORT_TypeDef *) (0x400C8000)), PORT_Pin_6);} else {PORT_ResetBits(((MDR_PORT_TypeDef *) (0x400C8000)), PORT_Pin_6);}};
+		DAC2_SetData(4095>>1);
+		RELE1_AC.ReleStatus	= NOT_NORM;
+		RELE2_BATTERY.ReleStatus	= NOT_NORM;
+		RELE3_STABLE_WORK.ReleStatus = NOT_NORM;
+		{Rele_Status(&RELE1_AC); Rele_Status(&RELE2_BATTERY); Rele_Status(&RELE3_STABLE_WORK);};
+		LED1.Color=GREEN;
+		LED2.Color=GREEN;
+		{if(ON==ON){PORT_SetBits(((MDR_PORT_TypeDef *) (0x400C8000)), PORT_Pin_7);} else {PORT_ResetBits(((MDR_PORT_TypeDef *) (0x400C8000)), PORT_Pin_7);}};
+	}
+	if(Testing.Discharge_Mode == ON)
+	{
+		{if(ON==YES){ ((MDR_PORT_TypeDef *) (0x400B0000))->RXTX = PORT_Pin_8|(((MDR_PORT_TypeDef *) (0x400B0000))->RXTX&0xFFE0); Battery . Status_Join_To_Load = ON;} else { ((MDR_PORT_TypeDef *) (0x400B0000))->RXTX&= ~(PORT_Pin_8|0x001F); Battery . Status_Join_To_Load = OFF;}};
+	}
+	else
+	{
+		{if(OFF==YES){ ((MDR_PORT_TypeDef *) (0x400B0000))->RXTX = PORT_Pin_8|(((MDR_PORT_TypeDef *) (0x400B0000))->RXTX&0xFFE0); Battery . Status_Join_To_Load = ON;} else { ((MDR_PORT_TypeDef *) (0x400B0000))->RXTX&= ~(PORT_Pin_8|0x001F); Battery . Status_Join_To_Load = OFF;}};
+	}
 }
 
 

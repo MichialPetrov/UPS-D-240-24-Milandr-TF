@@ -8736,6 +8736,237 @@ void DeviceID_From_Flash(void);
 float Temperature_Convert_From_Flash (unsigned int temp); 
 
 #line 11 "Initialization.c"
+#line 1 "Configuration.h"
+ 
+ 
+ 
+
+
+
+#line 13 "Configuration.h"
+
+#line 20 "Configuration.h"
+
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+										 
+
+
+																			
+
+
+																		
+#line 55 "Configuration.h"
+								
+																			
+ 
+ 
+ 				
+				
+
+
+
+
+
+
+#line 75 "Configuration.h"
+
+
+
+
+
+
+
+
+
+
+
+#line 92 "Configuration.h"
+
+
+
+
+ 
+ 
+ 
+
+
+ 
+#line 114 "Configuration.h"
+
+
+
+
+ 
+#line 138 "Configuration.h"
+
+ 				
+#line 150 "Configuration.h"
+ 
+#line 159 "Configuration.h"
+ 				
+#line 168 "Configuration.h"
+
+ 
+ 
+ 				
+				
+				
+ 
+#line 186 "Configuration.h"
+
+
+ 
+
+
+
+
+
+ 				
+
+
+ 	
+
+
+
+
+ 				
+
+
+	
+	
+ 
+ 
+ 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+ 
+ 
+ 							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				
+
+
+
+
+
+ 
+ 
+ 							
+
+
+
+
+
+#line 12 "Initialization.c"
 #line 1 "Defines.h"
  
 
@@ -8956,7 +9187,7 @@ float Temperature_Convert_From_Flash (unsigned int temp);
 
 
 	
-#line 12 "Initialization.c"
+#line 13 "Initialization.c"
 #line 1 "Global_Var.h"
 #line 1 "Defines.h"
  
@@ -9614,7 +9845,7 @@ extern UPS_D_Testing Testing;
 
 
 
-#line 13 "Initialization.c"
+#line 14 "Initialization.c"
 #line 1 "Function.h"
 void Rele_Status(); 	
 void Battery_Parameters(void);  
@@ -9635,7 +9866,7 @@ void Testing_UPS_D(void);
 
 
 
-#line 14 "Initialization.c"
+#line 15 "Initialization.c"
 #line 1 "C:\\Programs\\Keil v537\\ARM\\ARMCC\\Bin\\..\\include\\string.h"
  
  
@@ -10058,7 +10289,7 @@ extern __declspec(__nothrow) void _membitmovewb(void *  , const void *  , int  ,
 
  
 
-#line 15 "Initialization.c"
+#line 16 "Initialization.c"
 
 
 
@@ -10493,7 +10724,7 @@ void interrupt_init(void)
  
 void watchdog_init (void)
  {  
-#line 467 "Initialization.c"
+#line 468 "Initialization.c"
 }
 
 void struct_config(void)
@@ -10518,6 +10749,20 @@ void struct_config(void)
 	ADC4_U_KAN_D.Channel		=	ADC_U_KAN_D_ch;
 	ADC5_U_ZERO.Channel			=	ADC_U_ZERO_ch;
 	ADC7_KAN_D_TYPE.Channel	=	ADC_KAN_D_TYPE;
+	
+	
+	
+		
+	{if(OFF==YES){ ((MDR_PORT_TypeDef *) (0x400B0000))->RXTX = PORT_Pin_8|(((MDR_PORT_TypeDef *) (0x400B0000))->RXTX&0xFFE0); Battery . Status_Join_To_Load = ON;} else { ((MDR_PORT_TypeDef *) (0x400B0000))->RXTX&= ~(PORT_Pin_8|0x001F); Battery . Status_Join_To_Load = OFF;}};
+	{if(OFF==ON){PORT_SetBits(((MDR_PORT_TypeDef *) (0x400C8000)), PORT_Pin_6);} else {PORT_ResetBits(((MDR_PORT_TypeDef *) (0x400C8000)), PORT_Pin_6);}};
+	{if(OFF==ON){PORT_SetBits(((MDR_PORT_TypeDef *) (0x400C8000)), PORT_Pin_7);} else {PORT_ResetBits(((MDR_PORT_TypeDef *) (0x400C8000)), PORT_Pin_7);}};
+	RELE1_AC.ReleStatus	= NOT_NORM;
+	RELE2_BATTERY.ReleStatus	= NOT_NORM;
+	RELE3_STABLE_WORK.ReleStatus = NOT_NORM;
+	{Rele_Status(&RELE1_AC); Rele_Status(&RELE2_BATTERY); Rele_Status(&RELE3_STABLE_WORK);};
+	
+	
+	
 	
 	ADC0_I_LOAD.Convert_coef			=	(float)((float)3.3/((float)((float)0.005*15/1)*4095));
 	ADC1_I_BATTERY.Convert_coef		=	(float)((float)3.3/((float)((float)0.005*15/1)*4095));

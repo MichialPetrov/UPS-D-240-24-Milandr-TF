@@ -20,6 +20,7 @@
 .\objects\initialization.o: C:\Programs\Keil v537\Packs\Milandr\MDR32FxQI\1.0\Libraries\SPL\MDR32FxQI\inc\MDR32FxQI_eeprom.h
 .\objects\initialization.o: C:\Programs\Keil v537\Packs\Milandr\MDR32FxQI\1.0\Libraries\SPL\MDR32FxQI\inc\MDR32FxQI_iwdg.h
 .\objects\initialization.o: Initialization.h
+.\objects\initialization.o: Configuration.h
 .\objects\initialization.o: Defines.h
 .\objects\initialization.o: Global_Var.h
 .\objects\initialization.o: Defines.h

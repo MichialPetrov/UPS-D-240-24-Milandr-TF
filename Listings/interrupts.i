@@ -8685,19 +8685,14 @@ void Timer1_IRQHandler(void)
 	 
   TIMER_ClearFlag(((MDR_TIMER_TypeDef *) (0x40070000)), TIMER_STATUS_CNT_ARR);	
 	Counter_Handling (&Counter_Starting_Initialization);
-	
-	
-	
-	
 	Counter_Handling (&Battery.Counter_Check_I_Battery);
 	Counter_Handling (&Counter_Anti_Bounce);
 	Counter_Handling (&Counter_Transient_Process);
 	Counter_Handling (&Counter_Transient_Process_UPS);
 	Counter_Handling (&I2C_OW_Converter.Counter_ACK_Flag);
 	Counter_Handling (&I2C_OW_Converter.Counter_I2C_Command_End);
-	
-	
-	
+
+	Counter_Handling (&RS485.Counter_Waiting_Receive_End);
 	Led_Lighting(&LED1);
 	Led_Lighting(&LED2);
 	ADC_Calculate(&ADC5_U_ZERO);
@@ -8707,13 +8702,7 @@ void Timer1_IRQHandler(void)
 	ADC_Calculate(&ADC3_U_BATTERY);
 	ADC_Calculate(&ADC4_U_KAN_D);
 	ADC_Calculate(&ADC7_KAN_D_TYPE);
-	
-	
-	
-	
-	
-	
-	
+
 
 	
 }
@@ -8726,9 +8715,15 @@ void Timer2_IRQHandler(void)
 	
 	Warning_Handler(&Wrng_U_KAN_D);
 	Warning_Handler(&Wrng_U_LOAD);
-	Warning_Handler(&Wrng_I_LOAD);
 	
-	
+	if(Battery.Counter_Check_I_Battery.Status == OFF) 
+	{
+		Warning_Handler(&Wrng_I_LOAD);
+		if(Wrng_I_LOAD.WarningStatus == YES) 
+		{
+			Battery.Counter_Check_I_Battery.Status = ON;
+		}
+	}
 	
 }
 

@@ -12,31 +12,6 @@
 /*фунция Rele_Status - определяет статус используемых реле*/
 void Rele_Status(ReleControl *RELE)
 {
-	//расчет статусов реле на основе соотвествующих данных
-	switch (RELE->pin)
-	{
-		case RELE_KAN_D:
-			if			(MODE==CHARGE) 		RELE ->ReleStatus=NORM;
-	  	else if (MODE==DISCHARGE) RELE ->ReleStatus=NOT_NORM;
-	  	else if (MODE==WAIT) 			RELE ->ReleStatus=(Wrng_U_KAN_D.WarningStatus==NO)?(NORM):(NOT_NORM); 
-		  else if (MODE==SLEEP) 		RELE ->ReleStatus=NOT_NORM;
-			else if (MODE==ALARM) 		RELE ->ReleStatus=(Wrng_U_KAN_D.WarningStatus==NO)?(NORM):(NOT_NORM); 
-			break;
-		case RELE_BATTERY:
-		  if			(MODE==CHARGE) 		RELE ->ReleStatus=(Battery.Level>BATTERY_LEVEL_85)?(NORM):(NOT_NORM);
-			else if (MODE==DISCHARGE) RELE ->ReleStatus=(Battery.Level>BATTERY_LEVEL_20)?(NORM):(NOT_NORM);
-		  else if (MODE==WAIT) 			RELE ->ReleStatus=NOT_NORM;
-			else if (MODE==SLEEP) 		RELE ->ReleStatus=((Battery.Level>BATTERY_LEVEL_20)&&(device_status[CHECK_BATTERY_STATUS]!=YES))?(NORM):(NOT_NORM);
-			else if (MODE==ALARM)			RELE ->ReleStatus=((Battery.Level>BATTERY_LEVEL_20)&&(device_status[CHECK_BATTERY_STATUS]!=YES))?(NORM):(NOT_NORM);
-			break;
-		case RELE_WARNING:
-			if			(MODE==CHARGE)		RELE ->ReleStatus=NORM;
-			else if (MODE==DISCHARGE) RELE ->ReleStatus=NORM;
-		  else if (MODE==WAIT) 			RELE ->ReleStatus=NOT_NORM;
-			else if (MODE==SLEEP) 		RELE ->ReleStatus=NOT_NORM;
-			else if (MODE==ALARM) 		RELE ->ReleStatus=NOT_NORM;
-			break;
-	}
 	//переключение реле в зависимости от текущего состояние устройства, если ReleStatus=NOT_NORM, то реле в непроводящем состоянии, если NORM - то проводящем состоянии
 	(RELE ->ReleStatus==NORM)?(PORT_SetBits(MDR_PORTE, RELE ->pin)):(PORT_ResetBits(MDR_PORTE, RELE ->pin));
 
@@ -836,7 +811,45 @@ float U_Hysteresis_KAN_D (void)
  */
 void Testing_UPS_D(void)
 {
-	
+	char rem=REMOUT;
+	if((Testing.Charge_Mode == ON)||(rem==ON))
+	{
+		BOOST_REGELATOR(ON);
+		if(Testing.U_Battery_Limit_Value == OFF)
+		{
+			DAC2_SetData(Nmax);	//Минимальное напряжение на ИРН-2
+		}
+		else if((Testing.U_Battery_Limit_Value == YES)||(rem==ON))
+		{
+			DAC2_SetData(0);		//Максимальное напряжение на ИРН-2
+		}
+		RELE1_AC.ReleStatus	= NORM;
+		RELE2_BATTERY.ReleStatus	= NORM;
+		RELE3_STABLE_WORK.ReleStatus = NORM;
+		RELE_STATUS;
+		LED1.Color=RED;
+		LED2.Color=RED;
+	}
+	else
+	{
+		BOOST_REGELATOR(OFF);
+		DAC2_SetData(Nmax>>1);
+		RELE1_AC.ReleStatus	= NOT_NORM;
+		RELE2_BATTERY.ReleStatus	= NOT_NORM;
+		RELE3_STABLE_WORK.ReleStatus = NOT_NORM;
+		RELE_STATUS;
+		LED1.Color=GREEN;
+		LED2.Color=GREEN;
+		BOOST_REGELATOR_CAPACITY_DISCHARGE(ON);
+	}
+	if(Testing.Discharge_Mode == ON)
+	{
+		BATTERY_JOIN_TO_LOAD(ON);
+	}
+	else
+	{
+		BATTERY_JOIN_TO_LOAD(OFF);
+	}
 }
 
 

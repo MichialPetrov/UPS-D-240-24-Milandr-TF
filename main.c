@@ -22,14 +22,14 @@
 #include "Save_Flash.h" 
 
 
+uint8_t time, bat;
+
 int main (void)
 {
 
  	Initialization();
 	AVR_VALUE_CALCULATION_IS_END; //ждем завершения расчета средних значений изменяемых величин
-	Default_settings();						//уставки инициализируются значениями по умолчанию
-	//Settings_From_Flash();				//уставки инициализируются значениями сохраненными во FLASH
-	//CHECK_BATTERY_CONNECT_START;  //стартовая проверка наличия подключенной батареи
+	
 
 	Counter_Starting_Initialization.Status = ON; 
 	while(Counter_Starting_Initialization.Status==ON)
@@ -43,17 +43,14 @@ int main (void)
 	LED1.Flash=PERMAMENT;
 	LED2.Color=GREEN;
 	LED2.Flash=PERMAMENT;
+	
+
 
 	while(1)
 	{
-		//IWDG_ReloadCounter(); //обнуление сторожевого таймера
-		//Battery_Parameters();
-		//Check_Status();
-		//Mode_Of_Work();
 		Testing_UPS_D();
 		Read_Temperature();
 		RS485_ReadData();
-		//Save_Setting_to_Flash();
 	}
 }
 

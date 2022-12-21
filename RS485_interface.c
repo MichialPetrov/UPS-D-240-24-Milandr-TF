@@ -222,12 +222,15 @@ void RS485_Create_Transmitted_Package (void)
 								{
 									short data	= 0;
 									Battery.CapacityPins=BATTERY_CAPACITY_PINS;
+									Battery.CapacityPins >>= Bit4;
 									Battery.TimeDischargePins=TIME_DISCHARGE_PINS;
+	
 									data = (((~Battery.CapacityPins)			&0xF) <<Bit0) |
-												 ((((~Battery.TimeDischargePins)&0xF) <<Bit4))	; 	
-									if(UPS_D.Type_Of_KAN_D == POWER240W)  			data |= 0x03;
-									else if(UPS_D.Type_Of_KAN_D == POWER120W)		data |= 0x02;
-									else if(UPS_D.Type_Of_KAN_D == POWER75W)		data |= 0x01;
+												 ((((~Battery.TimeDischargePins)&0xF) <<Bit4))	; 
+									Type_Of_KAN_D();									
+									if(UPS_D.Type_Of_KAN_D == POWER240W)  			data |= 0x03<<Bit8;
+									else if(UPS_D.Type_Of_KAN_D == POWER120W)		data |= 0x02<<Bit8;
+									else if(UPS_D.Type_Of_KAN_D == POWER75W)		data |= 0x01<<Bit8;
 									
 									Create_2Byte_Answer(data);	
 								}
