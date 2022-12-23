@@ -90,15 +90,15 @@ void Write_Registers_Data(void)
 //функция Convert_And_Save_Receive_Parameters - сохраняет принятые по Modbus данные в переменные, используемые в проекте. Также преобразует принятые данные в требуемый для ПО формат
 void Convert_And_Save_Receive_Parameters(void)
 {
-	for (uint8_t i=RS485.Registor_Adress; i<(RS485.Registor_Adress+RS485.Amount_Registor_Read_Or_Write); i++)
+	/*for (uint8_t i=RS485.Registor_Adress; i<(RS485.Registor_Adress+RS485.Amount_Registor_Read_Or_Write); i++)
 	{
 		switch (i)
 		{
-				case STATUS_CHARGE_MODE:												UPS_D.T.Battery.Max_Value   = (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	// 37																								
-				case SET_U_BATTERY_LIMIT_VALUE_REG:							UPS_D.U_Tricle 							= (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	// 38						
-				case STATUS_DISCHARGE_MODE:											UPS_D.U_Over 								= (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	// 39									
+				case STATUS_CHARGE_MODE:												UPS_D.Charge_Mode   				= (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	// 37																								
+				case SET_U_BATTERY_LIMIT_VALUE_REG:							UPS_D.Discharge_Mode 				= (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	// 38						
+				case STATUS_DISCHARGE_MODE:											UPS_D.U_Battery_Limit_Value = (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	// 39									
 		}
-	}
+	}*/
 }
 			
 
@@ -186,18 +186,19 @@ void RS485_Create_Transmitted_Package (void)
 				/*7*/		case MODE_REG:
 								{
 									short data	= 0;
-									char rem=REMOUT;	
+									char DU=REMOUT;
+									DU = (~DU)&0x01;
 									data = (RELE1_AC.ReleStatus							<<Bit0)| //Сеть норма
 												 (RELE2_BATTERY.ReleStatus				<<Bit1)| //АКБ норма
 												 (RELE3_STABLE_WORK.ReleStatus		<<Bit2)| //Режим норма
 												 (Wrng_U_KAN_D.WarningStatus			<<Bit3)|
 												 (Wrng_U_LOAD.WarningStatus				<<Bit4)|
 												 (Wrng_I_LOAD.WarningStatus				<<Bit5)|
-												 (rem															<<Bit6);
+												 (DU															<<Bit6);
 									Create_2Byte_Answer(data);							
 								}	
 			break;								
-				/*8*/		case STATUS_CHARGE_MODE:									Create_2Byte_Answer((unsigned short)Testing.Charge_Mode);						break;
+				/*8*/		case STATUS_CHARGE_MODE:									Create_2Byte_Answer(0);						break;
 				/*9*/		case SET_U_BATTERY_LIMIT_VALUE_REG:				Create_2Byte_Answer((unsigned short)Testing.Discharge_Mode);				break;
 				/*10*/	case STATUS_DISCHARGE_MODE:								Create_2Byte_Answer((unsigned short)Testing.U_Battery_Limit_Value);	break;
 				/*11*/	case T_BATTERY_1_REG:

@@ -10760,6 +10760,7 @@ void struct_config(void)
 	RELE2_BATTERY.ReleStatus	= NOT_NORM;
 	RELE3_STABLE_WORK.ReleStatus = NOT_NORM;
 	{Rele_Status(&RELE1_AC); Rele_Status(&RELE2_BATTERY); Rele_Status(&RELE3_STABLE_WORK);};
+	Testing.U_Battery_Limit_Value = YES;	
 	
 	
 	

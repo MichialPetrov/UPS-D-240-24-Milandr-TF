@@ -811,17 +811,18 @@ float U_Hysteresis_KAN_D (void)
  */
 void Testing_UPS_D(void)
 {
-	char rem=REMOUT;
-	if((Testing.Charge_Mode == ON)||(rem==ON))
+	char DU=REMOUT;
+	DU = (~DU)&0x01;
+	if(DU==ON)
 	{
 		BOOST_REGELATOR(ON);
-		if(Testing.U_Battery_Limit_Value == OFF)
+		if(Testing.U_Battery_Limit_Value == YES)
+		{
+			DAC2_SetData(0);		//Максимальное напряжение на ИРН-2			
+		}
+		else
 		{
 			DAC2_SetData(Nmax);	//Минимальное напряжение на ИРН-2
-		}
-		else if((Testing.U_Battery_Limit_Value == YES)||(rem==ON))
-		{
-			DAC2_SetData(0);		//Максимальное напряжение на ИРН-2
 		}
 		RELE1_AC.ReleStatus	= NORM;
 		RELE2_BATTERY.ReleStatus	= NORM;
@@ -833,7 +834,6 @@ void Testing_UPS_D(void)
 	else
 	{
 		BOOST_REGELATOR(OFF);
-		DAC2_SetData(Nmax>>1);
 		RELE1_AC.ReleStatus	= NOT_NORM;
 		RELE2_BATTERY.ReleStatus	= NOT_NORM;
 		RELE3_STABLE_WORK.ReleStatus = NOT_NORM;
@@ -845,6 +845,7 @@ void Testing_UPS_D(void)
 	if(Testing.Discharge_Mode == ON)
 	{
 		BATTERY_JOIN_TO_LOAD(ON);
+		BOOST_REGELATOR_CAPACITY_DISCHARGE(OFF);
 	}
 	else
 	{

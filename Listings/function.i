@@ -9643,17 +9643,18 @@ float U_Hysteresis_KAN_D (void)
  
 void Testing_UPS_D(void)
 {
-	char rem=PORT_ReadInputDataBit(((MDR_PORT_TypeDef *) (0x400C0000)), PORT_Pin_6);;
-	if((Testing.Charge_Mode == ON)||(rem==ON))
+	char DU=PORT_ReadInputDataBit(((MDR_PORT_TypeDef *) (0x400C0000)), PORT_Pin_6);;
+	DU = (~DU)&0x01;
+	if(DU==ON)
 	{
 		{if(ON==ON){PORT_SetBits(((MDR_PORT_TypeDef *) (0x400C8000)), PORT_Pin_6);} else {PORT_ResetBits(((MDR_PORT_TypeDef *) (0x400C8000)), PORT_Pin_6);}};
-		if(Testing.U_Battery_Limit_Value == OFF)
-		{
-			DAC2_SetData(4095);	
-		}
-		else if((Testing.U_Battery_Limit_Value == YES)||(rem==ON))
+		if(Testing.U_Battery_Limit_Value == YES)
 		{
 			DAC2_SetData(0);		
+		}
+		else
+		{
+			DAC2_SetData(4095);	
 		}
 		RELE1_AC.ReleStatus	= NORM;
 		RELE2_BATTERY.ReleStatus	= NORM;
@@ -9665,7 +9666,6 @@ void Testing_UPS_D(void)
 	else
 	{
 		{if(OFF==ON){PORT_SetBits(((MDR_PORT_TypeDef *) (0x400C8000)), PORT_Pin_6);} else {PORT_ResetBits(((MDR_PORT_TypeDef *) (0x400C8000)), PORT_Pin_6);}};
-		DAC2_SetData(4095>>1);
 		RELE1_AC.ReleStatus	= NOT_NORM;
 		RELE2_BATTERY.ReleStatus	= NOT_NORM;
 		RELE3_STABLE_WORK.ReleStatus = NOT_NORM;
@@ -9677,6 +9677,7 @@ void Testing_UPS_D(void)
 	if(Testing.Discharge_Mode == ON)
 	{
 		{if(ON==YES){ ((MDR_PORT_TypeDef *) (0x400B0000))->RXTX = PORT_Pin_8|(((MDR_PORT_TypeDef *) (0x400B0000))->RXTX&0xFFE0); Battery . Status_Join_To_Load = ON;} else { ((MDR_PORT_TypeDef *) (0x400B0000))->RXTX&= ~(PORT_Pin_8|0x001F); Battery . Status_Join_To_Load = OFF;}};
+		{if(OFF==ON){PORT_SetBits(((MDR_PORT_TypeDef *) (0x400C8000)), PORT_Pin_7);} else {PORT_ResetBits(((MDR_PORT_TypeDef *) (0x400C8000)), PORT_Pin_7);}};
 	}
 	else
 	{

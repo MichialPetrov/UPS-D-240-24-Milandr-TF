@@ -8492,15 +8492,15 @@ void Write_Registers_Data(void)
 
 void Convert_And_Save_Receive_Parameters(void)
 {
-	for (uint8_t i=RS485.Registor_Adress; i<(RS485.Registor_Adress+RS485.Amount_Registor_Read_Or_Write); i++)
-	{
-		switch (i)
-		{
-				case STATUS_CHARGE_MODE:												UPS_D.T.Battery.Max_Value   = (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	
-				case SET_U_BATTERY_LIMIT_VALUE_REG:							UPS_D.U_Tricle 							= (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	
-				case STATUS_DISCHARGE_MODE:											UPS_D.U_Over 								= (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	
-		}
-	}
+	
+
+
+
+
+
+
+
+ 
 }
 			
 
@@ -8588,18 +8588,19 @@ void RS485_Create_Transmitted_Package (void)
 				 		case MODE_REG:
 								{
 									short data	= 0;
-									char rem=PORT_ReadInputDataBit(((MDR_PORT_TypeDef *) (0x400C0000)), PORT_Pin_6);;	
+									char DU=PORT_ReadInputDataBit(((MDR_PORT_TypeDef *) (0x400C0000)), PORT_Pin_6);;
+									DU = (~DU)&0x01;
 									data = (RELE1_AC.ReleStatus							<<Bit0)| 
 												 (RELE2_BATTERY.ReleStatus				<<Bit1)| 
 												 (RELE3_STABLE_WORK.ReleStatus		<<Bit2)| 
 												 (Wrng_U_KAN_D.WarningStatus			<<Bit3)|
 												 (Wrng_U_LOAD.WarningStatus				<<Bit4)|
 												 (Wrng_I_LOAD.WarningStatus				<<Bit5)|
-												 (rem															<<Bit6);
+												 (DU															<<Bit6);
 									Create_2Byte_Answer(data);							
 								}	
 			break;								
-				 		case STATUS_CHARGE_MODE:									Create_2Byte_Answer((unsigned short)Testing.Charge_Mode);						break;
+				 		case STATUS_CHARGE_MODE:									Create_2Byte_Answer(0);						break;
 				 		case SET_U_BATTERY_LIMIT_VALUE_REG:				Create_2Byte_Answer((unsigned short)Testing.Discharge_Mode);				break;
 				 	case STATUS_DISCHARGE_MODE:								Create_2Byte_Answer((unsigned short)Testing.U_Battery_Limit_Value);	break;
 				 	case T_BATTERY_1_REG:
