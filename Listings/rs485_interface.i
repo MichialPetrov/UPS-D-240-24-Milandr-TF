@@ -8601,8 +8601,8 @@ void RS485_Create_Transmitted_Package (void)
 								}	
 			break;								
 				 		case STATUS_CHARGE_MODE:									Create_2Byte_Answer(0);						break;
-				 		case SET_U_BATTERY_LIMIT_VALUE_REG:				Create_2Byte_Answer((unsigned short)Testing.Discharge_Mode);				break;
-				 	case STATUS_DISCHARGE_MODE:								Create_2Byte_Answer((unsigned short)Testing.U_Battery_Limit_Value);	break;
+				 		case SET_U_BATTERY_LIMIT_VALUE_REG:				Create_2Byte_Answer((unsigned short)Testing.U_Battery_Limit_Value);				break;
+				 	case STATUS_DISCHARGE_MODE:								Create_2Byte_Answer((unsigned short)Testing.Discharge_Mode);	break;
 				 	case T_BATTERY_1_REG:
 								{				
 									float data;
@@ -8628,8 +8628,8 @@ void RS485_Create_Transmitted_Package (void)
 									Battery.CapacityPins >>= Bit4;
 									Battery.TimeDischargePins=(PORT_ReadInputData(((MDR_PORT_TypeDef *) (0x400A8000)))&((1<<Bit3)|(1<<Bit2)|(1<<Bit1)|(1<<Bit0)));;
 	
-									data = (((~Battery.CapacityPins)			&0xF) <<Bit0) |
-												 ((((~Battery.TimeDischargePins)&0xF) <<Bit4))	; 
+									data = (((~Battery.TimeDischargePins)			&0xF) <<Bit0) |
+												 ((((~Battery.CapacityPins)&0xF) <<Bit4))	; 
 									Type_Of_KAN_D();									
 									if(UPS_D.Type_Of_KAN_D == POWER240W)  			data |= 0x03<<Bit8;
 									else if(UPS_D.Type_Of_KAN_D == POWER120W)		data |= 0x02<<Bit8;

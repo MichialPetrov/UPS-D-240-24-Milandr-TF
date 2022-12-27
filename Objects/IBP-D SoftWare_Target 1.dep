@@ -126,7 +126,7 @@ I (I2C_interface.h)(0x6321B3F9)
 I (Configuration.h)(0x639B3F89)
 I (Function.h)(0x639C8A4B)
 F (.\stdlib.h)(0x6321B3F9)()
-F (.\RS485_interface.c)(0x63A5C428)(--c99 -c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\MDR32F9Q2I-I.\RTE\_Target_1-I"C:\Programs\Keil v537\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include"-I"C:\Programs\Keil v537\Packs\Milandr\MDR32FxQI\1.0\Libraries\CMSIS\MDR32FxQI\CoreSupport\CM3"-I"C:\Programs\Keil v537\Packs\Milandr\MDR32FxQI\1.0\Libraries\CMSIS\MDR32FxQI\DeviceSupport\MDR32F9Q2I\inc"-I"C:\Programs\Keil v537\Packs\Milandr\MDR32FxQI\1.0\Libraries\SPL\MDR32FxQI\inc"-D__UVISION_VERSION="537" -D_RTE_ -D_RTE_-o .\objects\rs485_interface.o --omf_browse .\objects\rs485_interface.crf --depend .\objects\rs485_interface.d)
+F (.\RS485_interface.c)(0x63AABC8C)(--c99 -c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\MDR32F9Q2I-I.\RTE\_Target_1-I"C:\Programs\Keil v537\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include"-I"C:\Programs\Keil v537\Packs\Milandr\MDR32FxQI\1.0\Libraries\CMSIS\MDR32FxQI\CoreSupport\CM3"-I"C:\Programs\Keil v537\Packs\Milandr\MDR32FxQI\1.0\Libraries\CMSIS\MDR32FxQI\DeviceSupport\MDR32F9Q2I\inc"-I"C:\Programs\Keil v537\Packs\Milandr\MDR32FxQI\1.0\Libraries\SPL\MDR32FxQI\inc"-D__UVISION_VERSION="537" -D_RTE_ -D_RTE_-o .\objects\rs485_interface.o --omf_browse .\objects\rs485_interface.crf --depend .\objects\rs485_interface.d)
 I (C:\Programs\Keil v537\Packs\Milandr\MDR32FxQI\1.0\Libraries\SPL\MDR32FxQI\inc\MDR32FxQI_uart.h)(0x624C4A6A)
 I (.\RTE\Device\MDR32F9Q2I\MDR32FxQI_config.h)(0x6321B3FC)
 I (C:\Programs\Keil v537\ARM\ARMCC\include\stdint.h)(0x588BC994)
