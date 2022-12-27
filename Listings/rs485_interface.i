@@ -7508,8 +7508,8 @@ extern UPS_D_data Modbus, UPS_D, UPS_D_buf;
 
 typedef struct {
 	SwitchStatus Charge_Mode;			
-	SwitchStatus Discharge_Mode;	
 	Status U_Battery_Limit_Value;	
+	SwitchStatus Discharge_Mode;	
 } UPS_D_Testing;
 
 extern UPS_D_Testing Testing;
@@ -8481,8 +8481,8 @@ void Write_Registers_Data(void)
 		switch (i)
 			{		
 				case STATUS_CHARGE_MODE:												Testing.Charge_Mode 					 = (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	
-				case SET_U_BATTERY_LIMIT_VALUE_REG:							Testing.Discharge_Mode 				 = (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	
-				case STATUS_DISCHARGE_MODE:											Testing.U_Battery_Limit_Value  = (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	
+				case SET_U_BATTERY_LIMIT_VALUE_REG:							Testing.U_Battery_Limit_Value  = (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	
+				case STATUS_DISCHARGE_MODE:											Testing.Discharge_Mode			   = (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	
 			}
 			RS485.Package_Data_Index+=2;
 	}		

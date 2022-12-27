@@ -9837,8 +9837,8 @@ extern UPS_D_data Modbus, UPS_D, UPS_D_buf;
 
 typedef struct {
 	SwitchStatus Charge_Mode;			
-	SwitchStatus Discharge_Mode;	
 	Status U_Battery_Limit_Value;	
+	SwitchStatus Discharge_Mode;	
 } UPS_D_Testing;
 
 extern UPS_D_Testing Testing;

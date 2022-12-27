@@ -79,8 +79,8 @@ void Write_Registers_Data(void)
 		switch (i)
 			{		
 				case STATUS_CHARGE_MODE:												Testing.Charge_Mode 					 = (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	// 37																								
-				case SET_U_BATTERY_LIMIT_VALUE_REG:							Testing.Discharge_Mode 				 = (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	// 38						
-				case STATUS_DISCHARGE_MODE:											Testing.U_Battery_Limit_Value  = (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	// 39									
+				case SET_U_BATTERY_LIMIT_VALUE_REG:							Testing.U_Battery_Limit_Value  = (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	// 38						
+				case STATUS_DISCHARGE_MODE:											Testing.Discharge_Mode			   = (RS485.Package_Data[RS485.Package_Data_Index]<<Bit8)|RS485.Package_Data[RS485.Package_Data_Index+1];			break;	// 39									
 			}
 			RS485.Package_Data_Index+=SIZE_OF_REGISTER_DATA;
 	}		
